@@ -1,49 +1,52 @@
-        function append(x){
-            document.getElementById('display').value += x
+
+function appendValue(value){
+    document.getElementById("display").value += value;
+}
+
+function clearScreen(){
+    document.getElementById("display").value = "";
+}
+
+function calculate(){
+    let input = document.getElementById("display").value;
+
+    try{
+        if(input === ""){
+            throw "Enter Value";
         }
 
+        let result = eval(input);
 
-        function calculate(){
-            let ip = document.getElementById('display').value
-
-            try {
-                if (ip === "" || ip===NaN) {
-                    throw new Error("Invalid input");
-                }
-
-                let result = eval(ip);
-                if(!isFinite(result)){
-                    throw new Error("Invalid Calculation")
-                }
-                document.getElementById('display').value = result
-
-            } catch (error) {
-                alert(error.message);
-                clearScreen()
-            }
+        if(!isFinite(result)){
+            throw "Invalid Calculation";
         }
 
-        function clearScreen(){
-            document.getElementById('display').value = " "
-        }
+        document.getElementById("display").value = result;
+    }
+    catch(error){
+        alert(error);
+        clearScreen();
+    }
+}
 
-        function sq(){
-            let num = document.getElementById('display').value
+function square(){
+    let num = document.getElementById("display").value;
 
-            if(num==="" || num===NaN){
-                alert("Enter Valid Number")
-                return
-            }
+    if(num === "" || isNaN(num)){
+        alert("Enter valid number");
+        return;
+    }
 
-            document.getElementById('display').value = `${num*num}`
-        }
+    document.getElementById("display").value = num * num;
+}
 
-        function iPrompt(){
-            let num = prompt("Enter a Number")
-            if(num === null || num.trim() === "" || isNaN(num)){
-                alert("Enter a Valid Number")
-                return
-            }
+function promptValue(){
+    let num = prompt("Enter Number");
 
-            document.getElementById('display').value = `${num}`
-        }
+    if(num === null || num.trim() === "" || isNaN(num)){
+        alert("Enter valid number");
+        return;
+    }
+
+    document.getElementById("display").value = num;
+}
